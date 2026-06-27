@@ -1,0 +1,112 @@
+.panel-container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 30px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.core-orb {
+    width: 24px;
+    height: 24px;
+    background: radial-gradient(circle, var(--neon-cyan) 0%, var(--neon-purple) 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+/* Network Status Indicator Colors */
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.3);
+}
+.status-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+.online { color: var(--neon-cyan); }
+.online .status-dot { background: var(--neon-cyan); box-shadow: 0 0 8px var(--neon-cyan); }
+
+.offline { color: #ff4757; }
+.offline .status-dot { background: #ff4757; box-shadow: 0 0 8px #ff4757; }
+
+/* Cards & Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.dash-card {
+    background: rgba(25, 25, 45, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.input-group {
+    margin-top: 15px;
+}
+
+label {
+    display: block;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    background: #0f0f23;
+    border: 1px solid var(--glass-border);
+    color: white;
+    border-radius: 6px;
+}
+
+/* Ignition Button */
+.ignition-zone {
+    text-align: center;
+}
+
+#ignite-btn {
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+}
+
+#ignite-btn:hover {
+    background: var(--neon-cyan);
+    color: var(--bg-space);
+    box-shadow: 0 0 25px var(--neon-cyan);
+}

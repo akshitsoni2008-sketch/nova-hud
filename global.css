@@ -1,0 +1,24 @@
+:root {
+    --bg-space: #06060e;
+    --glass-bg: rgba(10, 10, 25, 0.4);
+    --glass-border: rgba(0, 243, 255, 0.15);
+    --neon-cyan: #00f3ff;
+    --neon-purple: #9d4edd;
+    --text-bright: #ffffff;
+    --text-dim: #707593;
+    --glow: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6));
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-space);
+    color: var(--text-bright);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none !important;
+}

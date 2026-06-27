@@ -1,0 +1,200 @@
+/* ========================================================
+   ⚡ JARVIS HOLO HUD GRAPHICS ENGINE
+   ======================================================== */
+
+:root {
+    --holo-cyan: #00f0ff;
+    --holo-blue: #0077aa;
+    --dark-bg: #030811;
+    --glow-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: var(--dark-bg);
+    background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: var(--holo-cyan);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* SCANLINE FX EFFECT */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    z-index: 999;
+    pointer-events: none;
+}
+
+/* MAIN HUD LAYOUT FRAME */
+.hud-container {
+    width: 90vw;
+    height: 90vh;
+    border: 1px solid var(--holo-blue);
+    box-shadow: inset 0 0 20px rgba(0, 119, 170, 0.2), var(--glow-shadow);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+    background: rgba(3, 8, 17, 0.85);
+}
+
+/* HEADER SUBSYSTEM */
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--holo-blue);
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-shadow: var(--glow-shadow);
+}
+
+.system-status {
+    color: #00ff66;
+    text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+}
+
+/* CENTER PULSING ARC REACTOR CORE */
+.center-matrix {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.6;
+}
+
+.core-ring {
+    position: absolute;
+    border: 2px dashed var(--holo-cyan);
+    border-radius: 50%;
+    box-shadow: var(--glow-shadow);
+}
+
+.ring-outer {
+    width: 120px;
+    height: 120px;
+    animation: spinClockwise 12s linear infinite;
+}
+
+.ring-middle {
+    width: 80px;
+    height: 80px;
+    border: 2px dotted var(--holo-blue);
+    animation: spinCounterClockwise 8s linear infinite;
+}
+
+.ring-inner {
+    width: 40px;
+    height: 40px;
+    animation: spinClockwise 4s linear infinite;
+}
+
+.core-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--holo-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--holo-cyan);
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* CENTRAL DATA TERMINAL FEED */
+.terminal-display {
+    flex: 1;
+    margin-top: 140px; /* Leave space for the center core widget */
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 119, 170, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.output-log div {
+    margin-bottom: 12px;
+    line-height: 1.4;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.user-msg { color: #ffffff; }
+.reply-msg { color: var(--holo-cyan); text-shadow: 0 0 4px rgba(0, 240, 255, 0.3); }
+.system-msg { color: var(--holo-blue); }
+
+/* CONTROLS BAR AT BOTTOM */
+.input-panel {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--holo-blue);
+    background: rgba(0, 119, 170, 0.1);
+    padding: 5px 10px;
+}
+
+.prompt-arrow {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+#user-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+#ignite-btn {
+    background: transparent;
+    border: 1px solid var(--holo-cyan);
+    color: var(--holo-cyan);
+    padding: 6px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#ignite-btn:hover {
+    background: var(--holo-cyan);
+    color: var(--dark-bg);
+    box-shadow: var(--glow-shadow);
+}
+
+/* ANIMATION TIMELINES */
+@keyframes spinClockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes spinCounterClockwise {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.3); opacity: 1; }
+}

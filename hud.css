@@ -1,0 +1,417 @@
+/* ACTIVE HUD SCREEN LAYER */
+#nova-hud {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, rgba(10, 10, 30, 0.8) 0%, #040408 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.hud-center {
+    text-align: center;
+    animation: pulseGlow 3s infinite alternate;
+}
+
+/* Futuristic Spinning Ring */
+.scan-ring {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 30px;
+    border: 2px dashed var(--neon-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+    animation: spin 10s linear infinite;
+}
+
+.hud-center h1 {
+    font-size: 3rem;
+    letter-spacing: 6px;
+    margin: 0;
+    background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5));
+}
+
+.hud-center p {
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+/* Animations */
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+    0% { filter: drop-shadow(0 0 2px rgba(0, 243, 255, 0.2)); }
+    100% { filter: drop-shadow(0 0 12px rgba(0, 243, 255, 0.6)); }
+}
+
+/* System Alerts / Graphic Pop-ups Placeholder */
+.nova-alert-popup {
+    position: absolute;
+    bottom: 10%;
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--neon-cyan);
+    padding: 15px 30px;
+    border-radius: 4px;
+    color: white;
+    font-family: monospace;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+/* Terminal Input Styling */
+.terminal-input-zone {
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+#nova-terminal {
+    width: 100%;
+    padding: 12px 20px;
+    background: rgba(15, 15, 35, 0.6);
+    border: 1px solid var(--neon-cyan);
+    border-radius: 25px;
+    color: white;
+    font-family: monospace;
+    font-size: 1rem;
+    text-align: center;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+#nova-terminal:focus {
+    box-shadow: 0 0 20px var(--neon-cyan);
+    background: rgba(20, 20, 45, 0.8);
+}
+/* JARVIS Center Core Ring Blueprint */
+.center-matrix {
+    position: relative;
+    margin: 0 auto 20px auto;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.core-ring {
+    position: absolute;
+    border: 2px dashed #00f0ff;
+    border-radius: 50%;
+}
+.ring-outer { width: 120px; height: 120px; animation: spinClockwise 12s linear infinite; }
+.ring-middle { width: 80px; height: 80px; border: 2px dotted #0077aa; animation: spinCounterClockwise 8s linear infinite; }
+.ring-inner { width: 40px; height: 40px; animation: spinClockwise 4s linear infinite; }
+.core-dot { width: 8px; height: 8px; background-color: #00f0ff; border-radius: 50%; box-shadow: 0 0 15px #00f0ff; }
+
+/* Clean Data Terminal Screen */
+.terminal-display {
+    width: 100%;
+    max-width: 600px;
+    height: 180px;
+    margin: 20px auto;
+    border: 1px solid rgba(0, 119, 170, 0.3);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    overflow-y: auto;
+    text-align: left;
+}
+.terminal-input-zone {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(0, 119, 170, 0.1);
+    border: 1px solid #0077aa;
+    padding: 5px 10px;
+}
+.prompt-symbol { margin-right: 10px; color: #00f0ff; font-weight: bold; }
+#nova-terminal { flex: 1; background: transparent; border: none; outline: none; color: #fff; }
+
+/* Rotational Timelines */
+@keyframes spinClockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes spinCounterClockwise { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+/* ========================================================
+   🌐 STARK VISOR PERIPHERAL ARRANGEMENT
+   ======================================================== */
+
+#nova-hud {
+    display: flex !important; /* Force layout alignment when active */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+#nova-hud.hidden {
+    display: none !important;
+}
+
+/* Master Sidebar Blueprint Layouts */
+.hud-sidebar {
+    width: 260px;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 30px;
+    z-index: 10000;
+}
+
+/* Glass Framing & Corner Borders to mimic Helmets */
+.hud-widget {
+    background: rgba(0, 243, 255, 0.02);
+    border-left: 3px solid var(--neon-cyan);
+    border-top: 1px solid rgba(0, 243, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+    padding: 15px;
+    position: relative;
+    box-shadow: inset 10px 0 20px rgba(0, 243, 255, 0.01);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.hud-widget:hover {
+    background: rgba(0, 243, 255, 0.04);
+    box-shadow: inset 15px 0 25px rgba(0, 243, 255, 0.03);
+}
+
+/* Informative Clean Typography */
+.widget-header {
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--neon-purple);
+    text-shadow: 0 0 8px rgba(157, 78, 221, 0.5);
+    margin-bottom: 12px;
+    border-bottom: 1px dashed rgba(157, 78, 221, 0.2);
+    padding-bottom: 4px;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: var(--text-dim);
+}
+
+.metric-row span:last-child {
+    color: var(--text-bright);
+    font-weight: bold;
+}
+
+/* Tech Progress Loading Bar Layouts */
+.hud-progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(250, 250, 250, 0.1);
+    margin-top: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.bar-fill {
+    width: 45%;
+    height: 100%;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 8px var(--neon-cyan);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Subtle Right Sidebar Audio Bar Matrix Simulator */
+.hud-wave-container {
+    display: flex;
+    gap: 3px;
+    height: 30px;
+    align-items: flex-end;
+    margin-top: 15px;
+}
+
+.wave-bar {
+    flex: 1;
+    background: var(--neon-cyan);
+    height: 20%;
+    transition: height 0.15s ease;
+}
+/* ========================================================
+   📊 DYNAMIC DOSSIER INTELLIGENCE DISPLAY LAYOUT
+   ======================================================== */
+
+#dossier-view {
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    width: 90vw;
+    height: 90vh;
+    background: rgba(4, 5, 15, 0.95);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    box-shadow: inset 0 0 30px rgba(0, 243, 255, 0.05), 0 0 40px rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    z-index: 10005;
+    backdrop-filter: blur(20px);
+    animation: layoutFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#dossier-view.hidden {
+    display: none !important;
+}
+
+/* Dossier Header Styling */
+.dossier-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+    padding-bottom: 15px;
+}
+
+.dossier-title-block .classification {
+    font-size: 0.75rem;
+    font-family: monospace;
+    letter-spacing: 3px;
+    color: var(--neon-purple);
+    display: block;
+    margin-bottom: 4px;
+}
+
+#dossier-subject {
+    font-size: 2rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-bright);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Stark Core Grid Arrangement */
+.dossier-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 0.8fr;
+    gap: 20px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.dossier-card {
+    background: rgba(10, 15, 35, 0.4);
+    border: 1px solid rgba(0, 243, 255, 0.1);
+    border-radius: 6px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.dossier-card h3 {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--neon-cyan);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+    padding-bottom: 8px;
+}
+
+.card-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--neon-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--neon-cyan);
+}
+
+/* Data Content Text Framework */
+.dossier-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #d1d5db;
+    white-space: pre-wrap;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Dynamic Image Presentation Grid */
+.dossier-media-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.dossier-img-wrapper {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 243, 255, 0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.dossier-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.dossier-img-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+/* High-Tech System Data Links */
+.dossier-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.intel-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: rgba(0, 243, 255, 0.03);
+    border: 1px solid rgba(0, 243, 255, 0.1);
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.intel-link:hover {
+    background: rgba(0, 243, 255, 0.08);
+    border-color: var(--neon-cyan);
+    padding-left: 16px;
+}
+
+@keyframes layoutFadeIn {
+    from { opacity: 0; transform: scale(0.97); filter: blur(5px); }
+    to { opacity: 1; transform: scale(1); filter: blur(0); }
+}

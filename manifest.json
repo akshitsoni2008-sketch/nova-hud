@@ -1,0 +1,17 @@
+{
+  "name": "NOVA SYSTEM HUB",
+  "short_name": "NOVA",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#02050f",
+  "theme_color": "#00f2fe",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=512&auto=format&fit=crop",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

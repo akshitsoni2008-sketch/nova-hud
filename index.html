@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA CORE INTERFACE // JARVIS HUD</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/hud.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <div class="scanlines"></div>
+
+    <main id="control-panel" class="panel-container">
+        <header class="panel-header">
+            <div class="logo-container">
+                <div class="core-orb"></div>
+                <h1>NOVA CORE</h1>
+            </div>
+            <div id="network-status" class="status-badge checking">
+                <span class="status-dot"></span>
+                <span id="status-text">SYSTEMS STANDBY</span>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <section class="dash-card">
+                <h2>👤 Profile Registry</h2>
+                <div class="input-group">
+                    <label for="user-dropdown">Active Operator</label>
+                    <select id="user-dropdown">
+                        <option value="admin">Primary User (Admin)</option>
+                        <option value="guest">Guest Operator</option>
+                    </select>
+                </div>
+                <button class="action-btn secondary" onclick="alert('Profile expansion module online.')">+ Register New Profile</button>
+            </section>
+
+            <section class="dash-card">
+                <h2>⚙️ System Modifiers</h2>
+                <div class="input-group">
+                    <label for="theme-select">Visual Aura</label>
+                    <select id="theme-select">
+                        <option value="nebula">Nebula Purple & Cyan</option>
+                        <option value="supernova">Supernova Gold</option>
+                    </select>
+                </div>
+                <div class="toggle-group">
+                    <label>Automated Camera Tracking</label>
+                    <input type="checkbox" id="camera-toggle" checked>
+                </div>
+            </section>
+        </div>
+
+        <footer class="ignition-zone">
+            <button id="ignite-btn" onclick="igniteNova()">IGNITE NOVA ENGINE</button>
+        </footer>
+    </main>
+
+    <button onclick="unjamAudio()" style="background: #ff4757; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; position: fixed; bottom: 10px; left: 20px; z-index: 100000;">
+        🔊 UNJAM AUDIO ENGINE
+    </button>
+
+    <div id="nova-hud" class="hidden">
+        
+        <aside class="hud-sidebar hud-left">
+            <div class="hud-widget">
+                <div class="widget-header">📡 CORE TELEMETRY</div>
+                <div class="metric-row"><span>SYS NODE:</span> <span id="hud-node-id">NV-9982</span></div>
+                <div class="metric-row"><span>SYS LOAD:</span> <span id="hud-cpu-load">0.00%</span></div>
+                <div class="metric-row"><span>MEM ALLOC:</span> <span id="hud-ram-load">0.00%</span></div>
+                <div class="hud-progress-bar"><div class="bar-fill" id="load-bar-fill"></div></div>
+            </div>
+            <div class="hud-widget">
+                <div class="widget-header">📍 TARGET COORDINATES</div>
+                <div class="metric-row"><span>VECTOR X:</span> <span id="coord-x">000</span></div>
+                <div class="metric-row"><span>VECTOR Y:</span> <span id="coord-y">000</span></div>
+                <div class="metric-row"><span>ALTITUDE:</span> <span id="hud-alt">104.28m</span></div>
+            </div>
+        </aside>
+
+        <div id="hud-center-panel" class="hud-center">
+            <div class="scan-ring"></div>
+            <h1>NOVA ONLINE</h1>
+            <p id="matrix-status-text" class="matrix-status">SENSORY MATRIX ACTIVE // STANDBY FOR DIRECTIVE</p>
+            
+            <div class="terminal-display">
+                <div id="output-log" class="output-log">
+                    <div class="system-msg">Uplink established. Ready for textual core data...</div>
+                </div>
+            </div>
+
+            <div class="terminal-input-zone">
+                <span class="prompt-symbol">&gt;</span>
+                <input type="text" id="nova-terminal" placeholder="Type manual command here... (e.g., 'System check')" autocomplete="off">
+            </div>
+        </div>
+
+        <div id="dossier-view" style="display: none;">
+            <header class="dossier-header">
+                <div class="dossier-title-block">
+                    <span class="classification">CLASSIFIED TARGET DATA // DETECTED ARCHIVE</span>
+                    <h2 id="dossier-subject">PROMPT QUERY</h2>
+                </div>
+                <button class="action-btn secondary" onclick="closeDossier()">↩️ RETURN TO HUD TERMINAL</button>
+            </header>
+
+            <div class="dossier-grid">
+                <section class="dossier-card text-intel">
+                    <h3><span class="card-dot"></span> CORE ANALYSIS</h3>
+                    <div id="dossier-core-text" class="dossier-content">
+                        Gathering planetary array information nodes...
+                    </div>
+                </section>
+
+                <section class="dossier-card media-intel">
+                    <h3><span class="card-dot"></span> SECURE IMAGE MATRIX</h3>
+                    <div id="dossier-images" class="dossier-media-grid"></div>
+                </section>
+
+                <section class="dossier-card links-intel">
+                    <h3><span class="card-dot"></span> TELEMETRY & MEDIA LINKS</h3>
+                    <div id="dossier-links" class="dossier-links-list"></div>
+                </section>
+            </div>
+        </div>
+
+        <aside class="hud-sidebar hud-right">
+            <div class="hud-widget">
+                <div class="widget-header">⏳ CHRONO MODULE</div>
+                <div class="metric-row"><span>SYS TIME:</span> <span id="hud-clock">00:00:00</span></div>
+                <div class="metric-row"><span>UPTIME:</span> <span id="hud-uptime">00s</span></div>
+            </div>
+            <div class="hud-widget">
+                <div class="widget-header">🛰️ VECTOR LINK</div>
+                <div class="metric-row"><span>SIGNAL:</span> <span style="color: var(--neon-cyan);">SECURE</span></div>
+                <div class="metric-row"><span>PING:</span> <span id="hud-ping">24ms</span></div>
+                <div class="hud-wave-container" id="wave-container"></div>
+            </div>
+        </aside>
+
+    </div>
+
+    <script src="js/brain.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
